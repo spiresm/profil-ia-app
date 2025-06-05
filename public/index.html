@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Profil IA</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Mon Profil IA</h1>
+  <input type="text" id="nom" placeholder="Nom" />
+  <input type="text" id="fonction" placeholder="Fonction" />
+  <input type="email" id="email" placeholder="Email" />
+  <button onclick="enregistrer()">Enregistrer</button>
+  <div id="message"></div>
+
+  <script>
+    fetch('/profil')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('nom').value = data.nom || '';
+        document.getElementById('fonction').value = data.fonction || '';
+        document.getElementById('email').value = data.email || '';
+      });
+
+    function enregistrer() {
+      const profil = {
+        nom: document.getElementById('nom').value,
+        fonction: document.getElementById('fonction').value,
+        email: document.getElementById('email').value
+      };
+
+      fetch('/profil', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(profil)
+      })
+      .then(res => res.text())
+      .then(msg => {
+        document.getElementById('message').innerText = 'Profil enregistré ✅';
+      });
+    }
+  </script>
+</body>
+</html>

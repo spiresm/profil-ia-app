@@ -1,0 +1,22 @@
+body {
+  font-family: sans-serif;
+  padding: 20px;
+}
+input {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  width: 300px;
+}
+button {
+  padding: 10px 15px;
+  background: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+#message {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+}
